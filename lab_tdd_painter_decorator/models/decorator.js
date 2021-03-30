@@ -26,9 +26,20 @@ Decorator.prototype.hasEnoughPaint = function(room) {
 Decorator.prototype.canPaintRoom = function(room) {
     if (this.hasEnoughPaint(room) === true) {
         room.isPainted()
-    }
-    
+    }  
 };
+
+Decorator.prototype.decreasePaint = function(room) {
+    let paintAmount = this.calculateTotalLitres();
+    while (room.area <= paintAmount)  {
+        for (paint of this.paintStock) {
+            paint.emptyLitres()
+        }
+    }
+};
+
+// Decorator.prototype.removeEmptyCans = function(room) {
+    
 
 // In js, always export a class if another class needs to import it
 module.exports = Decorator

@@ -43,8 +43,16 @@ describe('Decorator', function () {
     it('will paint room', function () {
         decorator.addCanPaint(paint1);
         decorator.addCanPaint(paint2);
-        result = decorator.canPaintRoom(room)
+        decorator.canPaintRoom(room)
         assert.strictEqual(room.painted, true)
+    });
+
+    it('will decrease paint in stock', function () {
+        decorator.addCanPaint(paint1);
+        decorator.addCanPaint(paint2);
+        decorator.decreasePaint(room)
+        result = decorator.calculateTotalLitres();
+        assert.strictEqual(result, 50)
     });
 
 });
