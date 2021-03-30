@@ -50,9 +50,17 @@ describe('Decorator', function () {
     it('will decrease paint in stock', function () {
         decorator.addCanPaint(paint1);
         decorator.addCanPaint(paint2);
-        decorator.decreasePaint(room)
-        result = decorator.calculateTotalLitres();
+        room.isPainted();
+        result = decorator.decreasePaint(room);
         assert.strictEqual(result, 50)
+    });
+
+    it('will remove empty cans from stock', function () {
+        decorator.addCanPaint(paint1);
+        decorator.addCanPaint(paint2);
+        paint1.emptyLitres();
+        decorator.removeEmptyCans(paint1)
+        assert.strictEqual(decorator.paintStock, [paint2])
     });
 
 });

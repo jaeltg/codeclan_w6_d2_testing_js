@@ -30,15 +30,21 @@ Decorator.prototype.canPaintRoom = function(room) {
 };
 
 Decorator.prototype.decreasePaint = function(room) {
+    // empty paint cans if they have been used to paint the room. compare the area of the room to the amount of litres of paint the decorator has in stock, decrease the amount he has in stock by the area of the room.
+    let totalPaint;
     let paintAmount = this.calculateTotalLitres();
-    while (room.area <= paintAmount)  {
-        for (paint of this.paintStock) {
-            paint.emptyLitres()
-        }
+    if (room.painted === true) {
+        totalPaint = paintAmount - room.area
     }
+    return totalPaint
 };
 
-// Decorator.prototype.removeEmptyCans = function(room) {
+Decorator.prototype.removeEmptyCans = function(paint) {
+    if (paint.checkIfEmpty === true) {
+        let index = this.paintStock.indexOf(paint)
+        this.paintStock.splice(index, 1)
+    }
+};
     
 
 // In js, always export a class if another class needs to import it
